@@ -2,11 +2,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-        "name": "(gdb) Attach",
+        "name": "GDB attached to Python process",
         "type": "cppdbg",
         "request": "attach",
         "program": "${command:python.interpreterPath}",
-        "processId": "${command:pickProcess}",
+        "processId": "${input:python-pid}",
         "MIMode": "gdb",
         "setupCommands": [
             {
@@ -22,16 +22,26 @@
         ]
     },
     {
-      "name": "Python: pytest",
+      "name": "Debug pytest",
       "type": "debugpy",
       "request": "launch",
       "module": "pytest",
       "args": [
         "-s",                 // so stdout shows in debug console
-        "${file}"             // run the current test file
       ],
       "console": "integratedTerminal",
       "justMyCode": false
+    }
+  ],
+  "inputs": [
+    {
+      "id": "python-pid",
+      "type": "command",
+      "command": "shellCommand.execute",
+      "args": {
+        "command": "pgrep -f python | tail -n 2 | head -n 1",
+        "useSingleResult": true
+      }
     }
   ]
 }
