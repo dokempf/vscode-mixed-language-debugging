@@ -1,8 +1,11 @@
 #pragma once
 
+#include <map>
+#include <string>
+#include <vector>
 namespace grading {
 
-int
-add_one(int x);
+std::vector<std::string>
+get_passing_students(const std::map<std::string, std::vector<int>>& students);
 
 } // namespace grading

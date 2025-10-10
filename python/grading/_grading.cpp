@@ -10,7 +10,7 @@ namespace grading {
 PYBIND11_MODULE(_grading, m)
 {
   m.doc() = "Python Bindings for grading";
-  m.def("add_one", &add_one, "Increments an integer value");
+  m.def("get_passing_students", &get_passing_students);
 }
 
 } // namespace grading

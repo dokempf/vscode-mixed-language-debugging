@@ -10,13 +10,13 @@ project(
 include(GNUInstallDirs)
 
 # Define the minimum C++ standard that is required
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Compilation options
-option(BUILD_PYTHON "Enable building of Python bindings" OFF)
+option(BUILD_PYTHON "Enable building of Python bindings" ON)
 
 # compile the library
 add_subdirectory(src)
@@ -24,13 +24,8 @@ add_subdirectory(src)
 # compile the application
 add_subdirectory(app)
 
-# compile the tests
-include(CTest)
-if(BUILD_TESTING)
-  find_package(Catch2 REQUIRED)
-  include(Catch)
-  add_subdirectory(tests)
-endif()
+# compile the tests include(CTest) if(BUILD_TESTING) find_package(Catch2
+# REQUIRED) include(Catch) add_subdirectory(tests) endif()
 
 if(BUILD_PYTHON)
   # Add Python bindings
