@@ -8,6 +8,7 @@ This repository show cases debugging with VSCode. It slowly ramps up to at the e
 
 ```
 python -m pip install --config-settings=cmake.build-type="Debug" -e .
+python -m pip install -r requirements-dev.txt
 ```
 
 Install all recommended extensions in VSCode.
