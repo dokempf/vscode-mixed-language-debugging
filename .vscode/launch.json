@@ -2,7 +2,39 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "GDB attached to Python process",
+      "name": "Debug pytest",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "-s",
+        // so stdout shows in debug console
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "GDB attached to Python process (manual)",
+      "type": "cppdbg",
+      "request": "attach",
+      "program": "${command:python.interpreterPath}",
+      "processId": "${command:pickProcess}",
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
+      "name": "GDB attached to Python process (auto)",
       "type": "cppdbg",
       "request": "attach",
       "program": "${command:python.interpreterPath}",
@@ -20,18 +52,6 @@
           "ignoreFailures": true
         }
       ]
-    },
-    {
-      "name": "Debug pytest",
-      "type": "debugpy",
-      "request": "launch",
-      "module": "pytest",
-      "args": [
-        "-s",
-        // so stdout shows in debug console
-      ],
-      "console": "integratedTerminal",
-      "justMyCode": false
     }
   ],
   "inputs": [
